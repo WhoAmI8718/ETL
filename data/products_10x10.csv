@@ -1,0 +1,13 @@
+﻿id;name;category;price;quantity;brand;color;weight;available;rating
+1;Phone     ;Electronics ;1000;5;Samsung ;Black ;0,18;True  ;4,7
+2;Camera    ;Electronics ;800;3;Canon   ;Black ;0,45;True  ;4,5
+3;TV        ;Electronics ;2500;2;LG      ;Silver;8,5;True  ;4,8
+4;Laptop    ;Computers   ;1800;4;Lenovo  ;Gray  ;1,7;True  ;4,6
+5;Mouse     ;Accessories ;50;20;Logitech;Black ;0,09;True  ;4,4
+6;Keyboard  ;Accessories ;120;15;A4Tech  ;Black ;0,75;True  ;4,3
+7;Monitor   ;Computers   ;600;7;Dell    ;Black ;4,2;True  ;4,6
+8;Headphones;Audio       ;200;10;Sony    ;White ;0,25;False ;4,5
+9;Tablet    ;Electronics ;700;6;Apple   ;Gray  ;0,48;True  ;4,9
+10; Speaker  ;Audio       ;150;12;JBL     ;Blue  ;0,65;True  ;4,4
+11;Microfone;Audio       ;7550;32;Sony    ;Black ;1;False ;5
+12;Laptop    ;Electronics ;5500;3;HP;Silver;1;False ;4,5

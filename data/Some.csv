@@ -1,0 +1,11 @@
+﻿id;product;quantity;price
+1;Phone     ;5;1000
+2;Camera    ;3;800
+3;TV        ;2;2500
+4;Laptop    ;4;1800
+5;Mouse     ;20;50
+6;Keyboard  ;15;120
+7;Monitor   ;7;600
+8;Headphones;10;200
+9;Tablet    ;6;700
+10; Speaker  ;12;150
