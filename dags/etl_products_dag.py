@@ -10,9 +10,6 @@ from transform import transform
 from load import load
 
 
-CSV_PATH = "/opt/airflow/project/data/products_10x10.csv"
-
-
 @dag(
     dag_id="products_etl",
     start_date=datetime(2026, 9, 1),
@@ -24,11 +21,11 @@ def products_etl():
 
     @task
     def extract_task():
-        rows, rejected_count = extract_csv(CSV_PATH)
+        rows, rejected_count = extract_csv()
 
         return {
             "rows": rows,
-            "rejected_count": rejected_count,
+            "rejected_count": rejected_count
         }
 
     @task
@@ -39,7 +36,7 @@ def products_etl():
 
         return {
             "products": products,
-            "rejected_count": rejected_count,
+            "rejected_count": rejected_count
         }
 
     @task
@@ -49,9 +46,7 @@ def products_etl():
         load(products)
 
     extracted = extract_task()
-
     transformed = transform_task(extracted)
-
     load_task(transformed)
 
 
