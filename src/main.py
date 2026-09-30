@@ -36,17 +36,13 @@ def main() -> None:
     # 3. СТАТИСТИКА
     read_count = len(rows) + extract_rejected
 
-    valid_count = load(products,
-                       get_local_db_connection(),
-                      )
+    valid_count = len(products)
 
     rejected_count = (
         extract_rejected + transform_rejected
     )
 
-    load_count = load(products,
-                      get_local_db_connection(),
-                     )
+    load_count = len(products)
 
     logger.info("===== СТАТИСТИКА ETL =====")
     logger.info("Прочитано: %s", read_count)
