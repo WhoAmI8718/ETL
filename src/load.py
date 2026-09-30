@@ -3,11 +3,15 @@ from typing import Any
 import psycopg
 import logging
 
-from config import DB_CONNECTION
+#from config import DB_CONNECTION
 
 logger = logging.getLogger(__name__)
 
-def load(products: list[dict[str, Any]]) -> None:
+
+def load(
+    products: list[dict[str, Any]],
+    db_connection: str,
+) -> None:
     rows = [
         (
             product["csvid"],
@@ -47,7 +51,7 @@ def load(products: list[dict[str, Any]]) -> None:
     """
 
     try:
-      with psycopg.connect(DB_CONNECTION) as conn:
+      with psycopg.connect(db_connection) as conn:
         with conn.cursor() as cur:
             cur.executemany(query, rows)
 

@@ -5,6 +5,8 @@ from extract import extract_csv
 from transform import transform
 from load import load
 
+from config import get_local_db_connection
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -34,13 +36,17 @@ def main() -> None:
     # 3. СТАТИСТИКА
     read_count = len(rows) + extract_rejected
 
-    valid_count = len(products)
+    valid_count = load(products,
+                       get_local_db_connection(),
+                      )
 
     rejected_count = (
         extract_rejected + transform_rejected
     )
 
-    load_count = len(products)
+    load_count = load(products,
+                      get_local_db_connection(),
+                     )
 
     logger.info("===== СТАТИСТИКА ETL =====")
     logger.info("Прочитано: %s", read_count)
@@ -57,7 +63,9 @@ def main() -> None:
             "Нет корректных данных для загрузки"
         )
 
-    load(products)
+    load(products,
+         get_local_db_connection(),
+        )
 
     logger.info("ETL успешно завершён")
 
