@@ -5,6 +5,8 @@ from extract import extract_csv
 from transform import transform
 from load import load
 
+from config import get_local_db_connection
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -57,7 +59,9 @@ def main() -> None:
             "Нет корректных данных для загрузки"
         )
 
-    load(products)
+    load(products,
+         get_local_db_connection(),
+        )
 
     logger.info("ETL успешно завершён")
 
