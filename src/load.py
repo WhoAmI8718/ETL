@@ -3,8 +3,6 @@ from typing import Any
 import psycopg
 import logging
 
-#from config import DB_CONNECTION
-
 logger = logging.getLogger(__name__)
 
 
