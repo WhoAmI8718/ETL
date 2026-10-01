@@ -1,62 +1,9 @@
 from decimal import Decimal
 
-from transform import transform
-
 import pytest
 
+from transform import transform
 
-def test_transform_valid_row():
-    # Arrange — подготавливаем входные данные
-    rows = [
-        {
-            "id": "1",
-            "name": " Mouse ",
-            "category": " Electronics ",
-            "price": "99,90",
-            "quantity": "2",
-            "brand": " Logitech ",
-            "color": " Black ",
-            "available": "true",
-        }
-    ]
-
-    # Act — вызываем проверяемую функцию
-    products, rejected_count = transform(rows)
-
-    # Assert — проверяем результат
-    assert rejected_count == 0
-
-    assert products == [
-        {
-            "csvid": 1,
-            "name": "Mouse",
-            "category": "Electronics",
-            "price": Decimal("99.90"),
-            "quantity": 2,
-            "brand": "Logitech",
-            "color": "Black",
-            "available": True,
-        }
-    ]
-
-def test_transform_rejects_negative_quantity():
-    rows = [
-        {
-            "id": "1",
-            "name": "Mouse",
-            "category": "Electronics",
-            "price": "99.90",
-            "quantity": "-1",
-            "brand": "Logitech",
-            "color": "Black",
-            "available": "true",
-        }
-    ]
-
-    products, rejected_count = transform(rows)
-
-    assert products == []
-    assert rejected_count == 1
 
 def make_valid_row() -> dict[str, str]:
     return {
@@ -70,7 +17,26 @@ def make_valid_row() -> dict[str, str]:
         "available": "true",
     }
 
-rows = [make_valid_row()]
+
+def test_transform_valid_row():
+    rows = [make_valid_row()]
+
+    products, rejected_count = transform(rows)
+
+    assert rejected_count == 0
+    assert products == [
+        {
+            "csvid": 1,
+            "name": "Mouse",
+            "category": "Electronics",
+            "price": Decimal("99.90"),
+            "quantity": 2,
+            "brand": "Logitech",
+            "color": "Black",
+            "available": True,
+        }
+    ]
+
 
 @pytest.mark.parametrize(
     ("field", "invalid_value"),
